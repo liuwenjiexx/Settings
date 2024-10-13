@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.unity.settings/Editor/USS/Settings.uss?fileID=7433441132597879392&amp;guid=5b515a3aa38148f479a5769fc6c2035a&amp;type=3#Settings" />
+    <Style src="project://database/Packages/com.unity.settings/Editor/USS/SettingSettingsProvider.uss?fileID=7433441132597879392&amp;guid=e410f9f5dd5e1114792e69e1cc113348&amp;type=3#SettingSettingsProvider" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="flex-direction: row;">
+            <ui:DropdownField label="Variant" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="variant" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="variant-priority" class="unity-base-field">
+            <ui:Label tabindex="-1" text="Variant Priority" parse-escape-sequences="true" display-tooltip-when-elided="true" class="unity-base-field__label" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" class="unity-base-field__input" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="variant-list-container" style="flex-grow: 1; border-left-color: rgba(0, 0, 0, 0.32); border-right-color: rgba(0, 0, 0, 0.32); border-top-color: rgba(0, 0, 0, 0.32); border-bottom-color: rgba(0, 0, 0, 0.32); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; margin-top: 5px; margin-bottom: 5px; margin-left: 3px; margin-right: 3px;">
+            <uie:Toolbar style="align-items: center;">
+                <uie:ToolbarButton text="Variant" parse-escape-sequences="true" display-tooltip-when-elided="true" class="variant-list-header_name" />
+                <uie:ToolbarButton text="Base Variant" parse-escape-sequences="true" display-tooltip-when-elided="true" class="variant-list-header_base" />
+                <uie:ToolbarSpacer class="variant-list-header_action" />
+            </uie:Toolbar>
+            <ui:ListView focusable="true" name="variant-list" style="height: 120px;" />
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="Debug Environment Variable" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; padding-top: 10px;" />
+        <ui:VisualElement name="env-variable-list-container" style="flex-grow: 1; border-left-color: rgba(0, 0, 0, 0.32); border-right-color: rgba(0, 0, 0, 0.32); border-top-color: rgba(0, 0, 0, 0.32); border-bottom-color: rgba(0, 0, 0, 0.32); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; margin-top: 5px; margin-bottom: 5px; margin-left: 3px; margin-right: 3px;">
+            <uie:Toolbar class="dictionary-view-header" style="align-items: center;">
+                <uie:ToolbarSpacer class="dictionary-view-header_menu" />
+                <uie:ToolbarButton text="Key" parse-escape-sequences="true" display-tooltip-when-elided="true" class="dictionary-view-header_key" />
+                <uie:ToolbarButton text="Value" parse-escape-sequences="true" display-tooltip-when-elided="true" class="dictionary-view-header_value" />
+            </uie:Toolbar>
+            <ui:ListView focusable="true" name="env-variable-list" style="height: 120px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

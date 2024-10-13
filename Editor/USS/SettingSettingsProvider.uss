@@ -1,0 +1,48 @@
+.unity-base-field__label {
+    min-width: 250px;
+}
+
+.variant-list-header_name {
+    width: 47%;
+}
+
+.variant-list-header_base {
+    flex-grow: 1;
+}
+
+.variant-list-header_action {
+    width: 30px;
+}
+
+.variant-list-item {
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.variant-list-tpl {
+    flex-direction: row;
+    -unity-text-align: middle-left;
+}
+
+.variant-list-new-tpl {
+    flex-direction: row;
+}
+
+.variant-list-item_name {
+    width: 47%;
+    margin-right: 5px;
+}
+
+.variant-list-item_base {
+    flex-grow: 1;
+    margin-left: 5px;
+}
+
+.variant-list-item_action {
+    width: 30px;
+}
+
+.variant-list-item_base-error {
+    color: rgb(253, 0, 0);
+}
