@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     //PackageSettingsRepository 类名被 Unity 内部使用, npm 下载的包 Unity 会剔除 PackageSettingsRepository 类, 导致缺少这个类
     [Serializable]

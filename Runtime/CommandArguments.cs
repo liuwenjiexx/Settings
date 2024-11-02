@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     class CommandArguments : IEnumerable<string>
     {

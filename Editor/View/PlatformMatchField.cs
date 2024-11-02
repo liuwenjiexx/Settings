@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Unity.SettingsManagement;
-using Unity.SettingsManagement.Editor;
+using SettingsManagement;
+using SettingsManagement.Editor;
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
     [CustomInputView(typeof(PlatformMatch))]
     public class PlatformMatchField : InputView

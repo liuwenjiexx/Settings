@@ -7,7 +7,7 @@
 //using UnityEngine;
 
 
-//namespace Unity.SettingsManagement
+//namespace SettingsManagement
 //{
 //    public class PlatformSetting<T>
 //    {

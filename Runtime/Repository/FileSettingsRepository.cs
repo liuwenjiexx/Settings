@@ -7,7 +7,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
 
     [Serializable]

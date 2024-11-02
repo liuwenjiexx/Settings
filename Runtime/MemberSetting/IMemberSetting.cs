@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     public interface IMemberSetting : ISetting
     {

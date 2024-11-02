@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     public sealed class PlayerPrefsRepository : ISettingsRepository
     {

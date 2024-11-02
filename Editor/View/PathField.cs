@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
 
 

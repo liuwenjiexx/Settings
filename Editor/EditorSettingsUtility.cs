@@ -11,7 +11,7 @@ using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
     public static class EditorSettingsUtility
     {

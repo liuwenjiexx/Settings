@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
     internal class SettingMetadata
     {

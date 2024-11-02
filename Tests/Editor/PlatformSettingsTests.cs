@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Unity.SettingsManagement.Tests
+namespace SettingsManagement.Tests
 {
     public class PlatformSettingsTests : SettingsTestsBase
     {

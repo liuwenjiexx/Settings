@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEngine;
 
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     public static class SettingsUtility
     {

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using Debug = UnityEngine.Debug;
 
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
     public class SettingField
     {

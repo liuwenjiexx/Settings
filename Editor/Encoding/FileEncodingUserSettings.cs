@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using Unity.SettingsManagement;
-using Unity.SettingsManagement.Editor;
+using SettingsManagement;
+using SettingsManagement.Editor;
 
 namespace Unity.Text.Editor
 {

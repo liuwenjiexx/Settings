@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Linq;
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     public static class Extensions
     {

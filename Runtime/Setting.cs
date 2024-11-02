@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     public class Setting<T> : ISetting
     {

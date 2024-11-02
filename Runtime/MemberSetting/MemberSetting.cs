@@ -1,7 +1,7 @@
 using System.Reflection;
 
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
 
     public class MemberSetting<T> : Setting<T>, IMemberSetting

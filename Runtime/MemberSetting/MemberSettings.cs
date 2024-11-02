@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
 
     public class MemberSettings

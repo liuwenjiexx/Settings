@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
     [Serializable]
     public sealed class EditorSettingsRepository : FileSettingsRepository

@@ -5,8 +5,8 @@ using System.Reflection;
 using UnityEditor.Build;
 using UnityEngine;
 using Unity;
-using Unity.SettingsManagement;
-using Unity.SettingsManagement.Editor;
+using SettingsManagement;
+using SettingsManagement.Editor;
 using static UnityEditor.Progress;
 
 /// <summary>

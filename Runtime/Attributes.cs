@@ -1,6 +1,6 @@
 using System;
 
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
 
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]

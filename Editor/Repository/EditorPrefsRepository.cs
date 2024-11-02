@@ -1,7 +1,7 @@
 using System;
 using UnityEditor;
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
     /// <summary>
     /// 编辑器各工程共享

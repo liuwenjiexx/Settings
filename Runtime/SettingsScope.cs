@@ -1,4 +1,4 @@
-namespace Unity.SettingsManagement
+namespace SettingsManagement
 {
     public enum SettingsScope
     {

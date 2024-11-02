@@ -7,7 +7,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
 
     internal class SearchDropdownField : BaseField<object>, INotifyValueChanged<object>

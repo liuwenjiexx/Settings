@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Unity.SettingsManagement.Editor
+namespace SettingsManagement.Editor
 {
     public class CustomInputViewAttribute : Attribute
     {

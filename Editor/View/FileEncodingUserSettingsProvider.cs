@@ -5,8 +5,8 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Unity.SettingsManagement;
-using Unity.SettingsManagement.Editor;
+using SettingsManagement;
+using SettingsManagement.Editor;
 
 namespace Unity.Text.Editor
 {

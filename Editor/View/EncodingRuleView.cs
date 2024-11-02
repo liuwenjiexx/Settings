@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Unity.SettingsManagement.Editor;
+using SettingsManagement.Editor;
 
 namespace Unity.Text.Editor
 {
