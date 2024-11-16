@@ -44,37 +44,21 @@ namespace SettingsManagement.Editor
     [UnityEditor.CustomPropertyDrawer(typeof(AssetPath))]
     class AssetPathPropertyDrawer : PropertyDrawer
     {
-        SerializedProperty targetProperty;
-
-        //void OnEnable()
-        //{
-        //    targetProperty = serializedObject.FindProperty("target");
-        //}
-
-        //public override void OnInspectorGUI()
-        //{
-        //    serializedObject.Update();
-        //    AssetPath assetPathValue = (AssetPath)target;
-        //    //EditorGUILayout.ObjectField(assetPathValue.Target, typeof(UnityEngine.Object),);
-        //    EditorGUILayout.PropertyField(targetProperty);
-        //    serializedObject.ApplyModifiedProperties();
-        //}
-
-        //public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        //{
-
-        //}
-
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             ObjectField objectField = new ObjectField();
             objectField.label = property.displayName;
-            
+
             objectField.RegisterValueChangedCallback(e =>
             {
-                Debug.Log("change: " + e.newValue);
-                Debug.Log(e.newValue == null);
+                AssetPath assetPath = new AssetPath(objectField.value);
+                SerializedPropertyUtility.SetObjectOfProperty(property, assetPath); 
+                property.serializedObject.Update();
+                EditorUtility.SetDirty(property.serializedObject.targetObject);
             });
+
+            AssetPath value = (AssetPath)SerializedPropertyUtility.GetObjectOfProperty(property);
+            objectField.SetValueWithoutNotify(value.Target);
             return objectField;
         }
     }

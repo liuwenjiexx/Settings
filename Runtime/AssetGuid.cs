@@ -2,25 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
-namespace Unity
+namespace UnityEngine
 {
 
     [Serializable]
     public struct AssetGuid
-#if UNITY_EDITOR
-        : ISerializationCallbackReceiver
-#endif
     {
         [SerializeField]
         private string guid;
-
-#if UNITY_EDITOR
-        [SerializeField]
-        private UnityEngine.Object target;
-#endif
-        public string Guid => guid;
 
         public AssetGuid(string guid)
         {
@@ -30,23 +20,34 @@ namespace Unity
 #endif
         }
 
+
+        public string Guid => guid;
+
+#if UNITY_EDITOR
+        [NonSerialized]
+        private UnityEngine.Object target;
         public AssetGuid(UnityEngine.Object target)
         {
             guid = null;
-#if UNITY_EDITOR
             this.target = target;
-            RefreshTarget();
-#endif
+            if (target)
+            {
+                if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(target, out guid, out long id))
+                {
+
+                }
+            }
         }
+
         public UnityEngine.Object Asset
         {
             get => Target;
         }
+
         public UnityEngine.Object Target
         {
             get
             {
-#if UNITY_EDITOR
                 if (target)
                     return target;
                 if (!string.IsNullOrEmpty(guid))
@@ -58,52 +59,14 @@ namespace Unity
                     }
                 }
                 return target;
-                
-#endif
 
                 Debug.LogError("Can't at runtime access AssetGuid.Target");
                 return null;
             }
         }
 
-#if UNITY_EDITOR
-        public void OnBeforeSerialize()
-        {
-            RefreshTarget();
-        }
-
-        public void OnAfterDeserialize()
-        {
-
-        }
-
-        void RefreshTarget()
-        {
-            var target = Target;
-            if (target)
-            {
-                guid = null;
-                if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(target, out guid, out long id))
-                {
-
-                }
-            }
-            //target 引用丢失不处理
-        }
 #endif
 
-        public static implicit operator UnityEngine.Object(AssetGuid assetGuid)
-        {
-            return assetGuid.Asset;
-        }
-
-
-
-
-        public static implicit operator AssetGuid(UnityEngine.Object obj)
-        {
-            return new AssetGuid(obj);
-        }
     }
 
 

@@ -64,8 +64,11 @@
     margin-bottom: 5px;
 }
 
-.unity-base-field__label {
+.unity-base-field .unity-base-field__label {
     min-width: 250px;
+}
+.unity-composite-field .unity-base-field__label {
+    min-width: 15px;
 }
 
 .setting-field {

@@ -974,6 +974,90 @@ namespace SettingsManagement.Editor
             return value;
         }
 
+        private static Dictionary<Type, Type> typeMapViewTypes;
+        private static List<InputViewMetadata> inputViewMetadatas;
+        class InputViewMetadata
+        {
+            public Type ValueType;
+            public Type ViewType;
+            public bool IncludeChildren;
+        }
+
+        public static Type GetInputViewType(Type valueType)
+        {
+            Type viewType = null;
+            if (typeMapViewTypes == null)
+            {
+                typeMapViewTypes = new();
+                inputViewMetadatas = new();
+                foreach (var type in TypeCache.GetTypesWithAttribute(typeof(CustomInputViewAttribute)))
+                {
+                    if (!type.IsClass || type.IsAbstract)
+                        continue;
+                    if (!typeof(InputView).IsAssignableFrom(type))
+                    {
+                        Debug.LogError($"{nameof(CustomInputViewAttribute)} Type '{type.Name}' not interit '{typeof(InputView).Name}'");
+                        continue;
+                    }
+                    var viewAttr = type.GetCustomAttribute<CustomInputViewAttribute>();
+                    var targetType = viewAttr.TargetType;
+                    if (targetType == null) continue;
+                    InputViewMetadata metadata = new();
+                    metadata.ViewType = type;
+                    metadata.ValueType = targetType;
+                    metadata.IncludeChildren = true;
+                    inputViewMetadatas.Add(metadata);
+
+                    if (!metadata.ViewType.IsAbstract)
+                    {
+                        typeMapViewTypes[targetType] = type;
+                    }
+                }
+            }
+
+            if (typeMapViewTypes.TryGetValue(valueType, out viewType))
+                return viewType;
+
+            if (BaseInputView.IsBaseField(valueType))
+            {
+                viewType = typeof(BaseInputView);
+                typeMapViewTypes[valueType] = viewType;
+                return viewType;
+            }
+
+            if (valueType.IsEnum)
+            {
+                if (typeMapViewTypes.TryGetValue(typeof(Enum), out viewType))
+                {
+                    typeMapViewTypes[valueType] = viewType;
+                }
+                return viewType;
+            }
+
+            foreach (var metadata in inputViewMetadatas)
+            {
+                if (metadata.IncludeChildren && metadata.ValueType.IsAssignableFrom(valueType))
+                {
+                    viewType = metadata.ViewType;
+                    typeMapViewTypes[valueType] = viewType;
+                    break;
+                }
+
+                if (metadata.ValueType.IsGenericTypeDefinition)
+                {
+                    if (valueType.IsGenericType && valueType.GetGenericTypeDefinition() == metadata.ValueType)
+                    {
+
+                        viewType = metadata.ViewType;
+                        typeMapViewTypes[valueType] = viewType;
+                        break;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public static void CreateSettingView(CreateSettingViewOptions options)
         {
 
@@ -1158,11 +1242,6 @@ namespace SettingsManagement.Editor
         }
 
 
-        public static Type GetInputViewType(Type valueType)
-        {
-            return CustomInputViewAttribute.GetInputViewType(valueType);
-        }
-
 
 
         private static Dictionary<SettingsPlatform, NamedBuildTarget> platformToBuildTargets;
@@ -1315,7 +1394,7 @@ namespace SettingsManagement.Editor
             return false;
         }
 
-        public static VisualElement CreateSettingsWindow(VisualElement parent, string title, bool scroll = true, string helpLink = null,Action< DropdownMenu> onMenu=null)
+        public static VisualElement CreateSettingsWindow(VisualElement parent, string title, bool scroll = true, string helpLink = null, Action<DropdownMenu> onMenu = null)
         {
             VisualElement root = new VisualElement();
             root.AddToClassList("settings-window");
@@ -1403,7 +1482,7 @@ namespace SettingsManagement.Editor
             return windowContent;
         }
 
-        public static Action InitializeSettingFieldLabel(ISetting setting, VisualElement settingLabel, Func<ISetting, bool> hasValue, Action<ISetting> setAsValue, Action<ISetting> unsetValue, Action<ISetting> deleteSetting = null, Action<ISetting, bool> moveSetting = null)
+        public static Action InitializeSettingFieldLabel(ISetting setting, VisualElement settingLabel, Func<ISetting, bool> hasValue, Action<ISetting> setAsValue, Action<ISetting> unsetValue, Action<ISetting> deleteSetting = null, Action<ISetting, bool> moveSetting = null, Action<ISetting, DropdownMenu> onMenu = null, Func<ISetting, bool> isBoldLabel = null)
         {
             settingLabel.AddManipulator(new MenuManipulator(e =>
             {
@@ -1462,14 +1541,16 @@ namespace SettingsManagement.Editor
                             deleteSetting(setting);
                         });
                 }
+                onMenu?.Invoke(setting, e.menu);
             }));
-            UpdateSettingFieldLabel(settingLabel, hasValue(setting));
-            return () => UpdateSettingFieldLabel(settingLabel, hasValue(setting));
+
+            //UpdateSettingFieldLabel(settingLabel, isBoldLabel(setting));
+            return () => UpdateSettingFieldLabel(settingLabel, isBoldLabel!=null? isBoldLabel(setting):false);
         }
 
-        public static void UpdateSettingFieldLabel(VisualElement settingLabel, bool isOverride)
+        public static void UpdateSettingFieldLabel(VisualElement settingLabel, bool isBoldLabel)
         {
-            if (isOverride)
+            if (isBoldLabel)
             {
                 if (!settingLabel.ClassListContains(SettingField.SettingLabelOverride_ClassName))
                 {

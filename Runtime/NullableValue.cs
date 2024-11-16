@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Data.SqlTypes;
 
-namespace SettingsManagement
+namespace UnityEngine
 {
 
 
@@ -41,7 +41,12 @@ namespace SettingsManagement
 
         public static implicit operator NullableValue<T>(T value) => new NullableValue<T>(value);
 
-        public static implicit operator T(NullableValue<T> value) => value.Value;
+        public static implicit operator T(NullableValue<T> value) => value.hasValue ? value.Value : Null.value;
+
+        public static implicit operator NullableValue<T>(Nullable<T> value) => value.HasValue ? new NullableValue<T>(value.Value) : Null;
+
+        public static implicit operator Nullable<T>(NullableValue<T> value) => value.HasValue ? new Nullable<T>(value.Value) : null;
+
 
         public override int GetHashCode()
         {

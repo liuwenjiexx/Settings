@@ -13,7 +13,7 @@ namespace SettingsManagement.Editor
 {
     public class ExampleSettingsProvider : SettingsProvider
     {
-        const string SettingsPath = "Unity/Example Settings";
+        const string SettingsPath = "Example/Settings";
 
         public ExampleSettingsProvider()
           : base(SettingsPath, UnityEditor.SettingsScope.Project)

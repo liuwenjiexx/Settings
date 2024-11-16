@@ -80,6 +80,7 @@ public class ExampleSettings
         set => rectValue.SetValue(value, true);
     }
 
+
     private static Setting<AssetPath> objectValue = new(Settings, "Object", default, SettingsScope.EditorUser);
     public static AssetPath ObjectValue
     {

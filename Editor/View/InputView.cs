@@ -11,6 +11,11 @@ namespace SettingsManagement.Editor
 
         public Type ValueType { get; internal set; }
 
+        public virtual bool IsBoldLabel(bool boldLabel)
+        {
+            return boldLabel;
+        }
+
         public event Action<object> ValueChanged;
 
         public abstract void SetValue(object value);
@@ -21,6 +26,11 @@ namespace SettingsManagement.Editor
         protected void OnValueChanged(object newValue)
         {
             ValueChanged?.Invoke(newValue);
+        }
+
+        public virtual void OnMenu(DropdownMenu menu)
+        {
+
         }
     }
 }

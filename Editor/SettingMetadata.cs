@@ -192,7 +192,7 @@ namespace SettingsManagement.Editor
                         {
                             member.FieldAttribute = inputAttr;
                         }
-                        Type viewType = CustomInputViewAttribute.GetInputViewType(inputAttr.GetType());
+                        Type viewType = EditorSettingsUtility.GetInputViewType(inputAttr.GetType());
                         if (viewType != null)
                         {
                             if (inputAttr.IsElement)
@@ -208,7 +208,7 @@ namespace SettingsManagement.Editor
 
                     if (member.ViewType == null)
                     {
-                        member.ViewType = CustomInputViewAttribute.GetInputViewType(settingType);
+                        member.ViewType = EditorSettingsUtility.GetInputViewType(settingType);
                     }
 
 
@@ -254,7 +254,7 @@ namespace SettingsManagement.Editor
                             var fInfo = member as FieldInfo;
                             metadata.ValueType = fInfo.FieldType;
                         }
-                        metadata.ViewType = CustomInputViewAttribute.GetInputViewType(settingType);
+                        metadata.ViewType = EditorSettingsUtility.GetInputViewType(settingType);
                         metadata.Name = $"{member.DeclaringType.FullName}{member.Name}";
 
                      

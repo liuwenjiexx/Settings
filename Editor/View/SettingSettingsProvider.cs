@@ -1,4 +1,3 @@
-using Codice.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +12,7 @@ namespace SettingsManagement.Editor
 {
     class SettingSettingsProvider : UnityEditor.SettingsProvider
     {
-        const string SettingsPath = "Unity/Settings";
+        const string SettingsPath = "Tool/Settings";
 
         private DropdownField variantField;
         private ListView variantListView;

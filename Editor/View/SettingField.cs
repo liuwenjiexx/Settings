@@ -204,12 +204,23 @@ namespace SettingsManagement.Editor
                         }
                     },
                     deleteSetting: deleteSetting,
-                    moveSetting: moveSetting);
+                    moveSetting: moveSetting,
+                    onMenu: (setting, menu) =>
+                    {
+                        InputView.OnMenu(menu);
+                    });
             }
 
 
             Refresh();
             return View;
+        }
+
+        bool IsBoldLabel()
+        {
+            bool b = Setting.Contains(Platform, Variant);
+            b = InputView.IsBoldLabel(b);
+            return b;
         }
 
         private void SettingsUtility_VariantChanged()
@@ -258,7 +269,7 @@ namespace SettingsManagement.Editor
 
             if (label != null)
             {
-                EditorSettingsUtility.UpdateSettingFieldLabel(label, Setting.Contains(Platform, Variant));
+                EditorSettingsUtility.UpdateSettingFieldLabel(label, IsBoldLabel());
             }
 
         }

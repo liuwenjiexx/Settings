@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SettingsManagement
 {
@@ -75,4 +76,9 @@ namespace SettingsManagement
         public Type SettingsType { get; set; }
     }
 
+    [AttributeUsage(AttributeTargets.Field)]
+    public class NullableValueAttribute : PropertyAttribute
+    {
+
+    }
 }
